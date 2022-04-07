@@ -2,13 +2,18 @@
   background: no-repeat url("http://img63.ddimg.cn/upload_img/00459/home/home_sprite2.png");
 }
 
-header {
+.ad {
   height: 200px;
   overflow: hidden;
 }
 
+.ad>img {
+  display: block;
+  margin: 0 auto;
+}
+
 /*导航栏内容*/
-section {
+.section {
   width: 1200px;
   height: 34px;
   padding: 0 159px; /*两边留白*/
@@ -24,25 +29,18 @@ section {
 }
 
 /*导航栏第二部分*/
-section div:nth-of-type(2) {
+.section div:nth-of-type(2) {
   display: flex;
   align-items: center;
 }
 
 /*导航栏第三部分内容*/
-ul {
+.ul {
   padding: 0;
   display: flex;
-  list-style: none;
-  margin: 0;
 }
 
-li {
-  /*display: block;*/
+.ul>li {
   padding: 0 8px;
   background: left -293px no-repeat url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png);
-}
-
-a {
-  text-decoration: none;
 }

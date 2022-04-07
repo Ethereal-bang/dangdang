@@ -4,11 +4,11 @@ export const Header = () => {
     return (
         <>
             {/*广告*/}
-            <header>
+            <header className={styles.ad}>
                 <img alt={"ad"} src={"http://img61.ddimg.cn/2022/4/2/2022040217391412915.jpg"}/>
             </header>
             {/*导航栏*/}
-            <section>
+            <section className={styles.section}>
                 <div>
                     <span>送至：</span>
                 </div>
@@ -18,7 +18,7 @@ export const Header = () => {
                         <a href="./">登录</a>
                     </span>
                     <span>成为会员</span>
-                    <ul>
+                    <ul className={styles.ul}>
                         <li>
                             <a href={"./"} className={styles.cart}>
                                 购物车
