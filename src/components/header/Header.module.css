@@ -1,0 +1,48 @@
+.cart {
+  background: no-repeat url("http://img63.ddimg.cn/upload_img/00459/home/home_sprite2.png");
+}
+
+header {
+  height: 200px;
+  overflow: hidden;
+}
+
+/*导航栏内容*/
+section {
+  width: 1200px;
+  height: 34px;
+  padding: 0 159px; /*两边留白*/
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #f9f9f9;
+  color: #646464;
+
+  font: 12px 'Hiragino Sans GB',"simsun","Arial";
+}
+
+/*导航栏第二部分*/
+section div:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+}
+
+/*导航栏第三部分内容*/
+ul {
+  padding: 0;
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+li {
+  /*display: block;*/
+  padding: 0 8px;
+  background: left -293px no-repeat url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png);
+}
+
+a {
+  text-decoration: none;
+}
