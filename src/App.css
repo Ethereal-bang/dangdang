@@ -11,3 +11,7 @@ a {
 input {
   outline: none;  /*隐藏轮廓*/
 }
+
+* {
+  box-sizing: border-box;
+}
