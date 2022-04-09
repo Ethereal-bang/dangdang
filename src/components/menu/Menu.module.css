@@ -1,0 +1,96 @@
+/*整体*/
+.menu {
+    height: 480px;
+    position: relative;
+    background: #fafafa;
+}
+
+/*头部导航*/
+.menu_header {
+    width: 1200px;
+}
+
+/*所有li*/
+.menu_item {
+    padding: 0 15px;
+    display: inline-block;
+    text-align: center;
+    font: 14px/40px "Microsoft Yahei";
+    font-weight: bold;
+}
+
+.menu_item a {
+    color: #323232;
+}
+
+.menu_item a:hover {
+    color: #ff2832;
+}
+
+.genre_menu {
+    width: 200px;
+    margin-right: 17px;
+    padding: 0;
+    background: #ff2832;
+    text-align: left;
+}
+
+.genre_menu a {
+    width: 171px;
+    padding-left: 20px;
+    display: block;
+    background: url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png) no-repeat 161px -567px;
+    color: #fff;
+}
+
+/*垂直导航栏 ul*/
+.sub_menu {
+    width: 200px;
+    position: absolute;
+    z-index: 1;
+}
+
+/*垂直导航栏 li*/
+.menu_title {
+    height: 30px;
+    padding-left: 18px;
+    color: #323232;
+    font: 14px/30px "Microsoft Yahei";
+}
+.menu_title:hover {
+    background: #fff;
+    color: #ff2832;
+    border: 2px solid #ff2832;
+    border-right: 0;
+}
+
+/*展开面板*/
+.menu_detail {
+    width: 979px;
+    height: 480px;
+    padding-left: 18px;
+    position: absolute;
+    top: 0;
+    left: 199px;
+    box-sizing: border-box;
+    border: 2px solid #ff2832;
+    z-index: 0;
+    font: 12px 'Hiragino Sans GB',"Simsun";
+}
+
+/*展开面板_每一类*/
+.genre_detail_item {
+    width: 979px;
+    padding: 7px 0;
+}
+
+.genre_detail_item>ul {
+    display: inline-block;
+    border-top: 1px dotted #d5d5d5;
+}
+
+.genre_detail_item>h5 {
+    width: 70px;
+    margin: 0;
+    display: inline-block;
+}
