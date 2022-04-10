@@ -1,5 +1,6 @@
 import styles from "./Menu.module.css";
 import menuData from "../../data/menu.json";
+import {Carousel} from "../carousel/Carousel";
 
 const menuItem = ["图书", "电子书", "童装童鞋", "女装", "食品", "母婴玩具",];
 
@@ -34,7 +35,7 @@ export const Menu = () => {
                 {/*展开面板*/}
                 {menuData.map((item, index) => (
                     /*对应每一个详情面板*/
-                    <ul className={styles["menu_detail"]} key={index}>
+                    <ul style={{display: "none"}} className={styles["menu_detail"]} key={index}>
                         <li>{item.link}</li>
                         <li>{item.rank}</li>
                         {item.list?.map((item2, index2) => (
@@ -47,6 +48,8 @@ export const Menu = () => {
                         ))}
                     </ul>
                 ))}
+                {/*轮播图*/}
+                <Carousel />
             </section>
         </>
     )

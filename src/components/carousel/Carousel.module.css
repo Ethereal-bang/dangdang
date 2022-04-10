@@ -1,0 +1,10 @@
+/*轮播图*/
+.banner {
+    width: 796px;
+    height: 326px;
+}
+.menu_detail, .banner {
+    position: absolute;
+    top: 0;
+    left: 199px;
+}
