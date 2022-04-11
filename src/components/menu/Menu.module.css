@@ -67,7 +67,7 @@
     height: 480px;
     padding-left: 18px;
     border: 2px solid #ff2832;
-    z-index: 0;
+    background: #ffffff;
     font: 12px 'Hiragino Sans GB',"Simsun";
     position: absolute;
     top: 0;

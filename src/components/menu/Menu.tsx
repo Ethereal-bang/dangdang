@@ -1,10 +1,13 @@
 import styles from "./Menu.module.css";
 import menuData from "../../data/menu.json";
 import {Carousel} from "../carousel/Carousel";
+import {useState} from "react";
 
 const menuItem = ["图书", "电子书", "童装童鞋", "女装", "食品", "母婴玩具",];
 
 export const Menu = () => {
+    const [curGenre, setCurGenre] = useState(-1);   // -1为了不与面板index匹配
+
     return (
         <>
             {/*头部导航栏*/}
@@ -27,7 +30,12 @@ export const Menu = () => {
                 {/*垂直导航栏*/}
                 <ul className={styles["sub_menu"]}>
                     {menuData.map((item, index) => (
-                        <li className={styles["menu_title"]} key={index}>
+                        <li
+                            className={styles["menu_title"]}
+                            key={index}
+                            onMouseLeave={() => setCurGenre(-1)}
+                            onMouseEnter={() => setCurGenre(index)}
+                        >
                             {item.menu_title}
                         </li>
                     ))}
@@ -35,7 +43,7 @@ export const Menu = () => {
                 {/*展开面板*/}
                 {menuData.map((item, index) => (
                     /*对应每一个详情面板*/
-                    <ul style={{display: "none"}} className={styles["menu_detail"]} key={index}>
+                    <ul style={(curGenre === index) ? {zIndex: "1"} : {zIndex: "-1"}} className={styles["menu_detail"]} key={index}>
                         <li>{item.link}</li>
                         <li>{item.rank}</li>
                         {item.list?.map((item2, index2) => (
