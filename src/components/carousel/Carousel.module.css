@@ -1,10 +1,12 @@
-/*轮播图*/
-.banner {
+.carousel {
     width: 796px;
     height: 326px;
-}
-.menu_detail, .banner {
     position: absolute;
     top: 0;
     left: 199px;
+}
+/*页数*/
+.page {
+    position: absolute;
+    bottom: 0;
 }

@@ -69,6 +69,9 @@
     border: 2px solid #ff2832;
     z-index: 0;
     font: 12px 'Hiragino Sans GB',"Simsun";
+    position: absolute;
+    top: 0;
+    left: 199px;
 }
 /*展开面板_每一类*/
 .genre_detail_item {

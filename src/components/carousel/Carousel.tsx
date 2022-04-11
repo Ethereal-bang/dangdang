@@ -1,30 +1,6 @@
 import styles from "./Carousel.module.css";
-import {useCallback, useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 
-const bannersSrc = [
-    "http://img60.ddimg.cn/2022/4/6/2022040611195775830.jpg",
-    "http://img63.ddimg.cn/2022/4/8/2022040817124594394.jpg",
-]
-
-interface Banner {
-    order: number,
-    isShow: boolean,
-}
-
-// const initBanner: Banner[] = [
-//     {
-//         order: 0,
-//         isShow: true,
-//     },
-//     {
-//         order: 1,
-//         isShow: false,
-//     },
-//     {
-//         order: 2,
-//         isShow: false,
-//     },
-// ]
 const bannerData = [
     {
         key: 1,
@@ -39,26 +15,25 @@ const bannerData = [
         img: "http://img60.ddimg.cn/2022/4/8/2022040817103038830.jpg",
     }
 ]
-// const initOrder = {
-//     nowOrder: 0,
-//     preOrder: initBanner.length - 1,
-// }
 
 export const Carousel = () => {
     const [cur, setCur] = useState<number>(0);
-    const timer = useRef(); // 保存setInterval的ID
+    // const timer = useRef(); // 保存setInterval的ID
 
-    const start = useCallback(() => {
-        console.log("useCallback")
-
+    useEffect(() => {
         // 已存在，清除定时器
-        if (timer.current) {
-            clearInterval(timer.current);
-        }
+        // if (timer.current) {
+        //     clearInterval(timer.current);
+        // }
 
         // @ts-ignore
-        timer.current = setInterval((() => {
-            console.log("setInterval")
+        const interval = setInterval((() => {
+            // if (cur >= bannerData.length - 1) {
+            //     setCur(0)
+            // } else {
+            //     setCur(1 + cur)
+            // }
+            // 用上面的方法则不能更新,由于闭包获得的cur永远是0
             setCur(cur => {
                 if (cur >= bannerData.length - 1) {
                     return 0;
@@ -66,15 +41,19 @@ export const Carousel = () => {
                 return ++cur;
             })
         }), 3000);
+        return () => clearInterval(interval);
+    }, [])
 
-    }, []);
-
-    useEffect(() => {
-        start();
-        return () => clearInterval(timer.current);
-    })
-
-    return <div className={styles["banner"]}>
-        <img src={bannerData[cur].img} alt={"ad"}/>
-    </div>
+    return (
+        <section className={styles["carousel"]}>
+            <div>
+                <img src={bannerData[cur].img} alt={"ad"}/>
+            </div>
+            <ul className={styles["page"]}>
+                {bannerData.map(item => {
+                    return <li key={item.key}>{item.key}</li>
+                })}
+            </ul>
+        </section>
+    )
 }
