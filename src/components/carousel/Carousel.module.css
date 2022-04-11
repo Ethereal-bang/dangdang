@@ -5,8 +5,43 @@
     top: 0;
     left: 199px;
 }
+
 /*页数*/
 .page {
     position: absolute;
-    bottom: 0;
+    left: 50%;
+    bottom: 7px;
+    color: #fff;
+}
+.page li {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+    display: inline-block;
+    background-color: #646464;
+    border-radius: 10px;
+    text-align: center;
+    font: 12px/20px Arial;
+}
+.page li:hover {
+    background-color: #ff2832;
+}
+
+/*翻页*/
+.turnBtn {
+    width: 33px;
+    height: 70px;
+    position: absolute;
+    top: 122px;
+    background: #000 url(http://img60.ddimg.cn/upload_img/00111/home/home_sprite_1507.png);
+    opacity: 0.2;
+    font-size: 0;
+    line-height: 99px;
+}
+div:nth-of-type(2) {
+    background-position: 1px -70px;
+}
+div:nth-of-type(3) {
+    right: 0;
+    background-position: -35px -70px;
 }

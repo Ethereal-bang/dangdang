@@ -18,15 +18,9 @@ const bannerData = [
 
 export const Carousel = () => {
     const [cur, setCur] = useState<number>(0);
-    // const timer = useRef(); // 保存setInterval的ID
 
+    // 设置定时器 更换cur
     useEffect(() => {
-        // 已存在，清除定时器
-        // if (timer.current) {
-        //     clearInterval(timer.current);
-        // }
-
-        // @ts-ignore
         const interval = setInterval((() => {
             // if (cur >= bannerData.length - 1) {
             //     setCur(0)
@@ -42,18 +36,41 @@ export const Carousel = () => {
             })
         }), 3000);
         return () => clearInterval(interval);
-    }, [])
+    }, [cur])
+
+    function turnPage(e: any) :void  {
+        if (e.target.innerText === "Left") {
+            if (cur === 0) {
+                setCur(bannerData.length - 1);
+            } else {
+                setCur(cur - 1);
+            }
+        } else if (e.target.innerText === "Right") {
+            if (cur === bannerData.length - 1) {
+                setCur(0);
+            } else {
+                setCur(cur + 1);
+            }
+        } else {    // 精准翻页
+            setCur(e.target.innerText - 1)    // cur改变触发effect
+        }
+    }
 
     return (
         <section className={styles["carousel"]}>
+            {/*图片*/}
             <div>
                 <img src={bannerData[cur].img} alt={"ad"}/>
             </div>
+            {/*页码*/}
             <ul className={styles["page"]}>
                 {bannerData.map(item => {
-                    return <li key={item.key}>{item.key}</li>
+                    return <li style={(item.key - 1 === cur) ? {backgroundColor:"#ff2832"} : {}} key={item.key} onMouseEnter={turnPage}>{item.key}</li>
                 })}
             </ul>
+            {/*翻页按钮*/}
+            <div className={styles["turnBtn"]} onClick={turnPage}>Left</div>
+            <div className={styles["turnBtn"]} onClick={turnPage}>Right</div>
         </section>
     )
 }
