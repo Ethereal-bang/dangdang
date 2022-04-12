@@ -1,16 +1,19 @@
 .carousel {
     width: 796px;
-    height: 326px;
     position: absolute;
     top: 0;
     left: 199px;
+}
+
+.carousel_top {
+    height: 326px;
 }
 
 /*页数*/
 .page {
     position: absolute;
     left: 50%;
-    bottom: 7px;
+    bottom: 167px;
     color: #fff;
 }
 .page li {
@@ -44,4 +47,13 @@ div:nth-of-type(2) {
 div:nth-of-type(3) {
     right: 0;
     background-position: -35px -70px;
+}
+
+/*轮播图下*/
+.carousel_bottom {
+    height: 160px;
+    display: flex;
+}
+.carousel_bottom li {
+    border-right: 1px solid #e6e6e6;
 }
