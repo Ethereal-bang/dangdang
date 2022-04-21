@@ -1,5 +1,6 @@
 .carousel {
-    width: 796px;
+    width: 795px;
+    overflow: hidden;
     position: absolute;
     top: 0;
     left: 199px;
@@ -7,13 +8,15 @@
 
 .carousel_top {
     height: 326px;
+    position: relative;
+    z-index: 1;
 }
 
 /*页数*/
 .page {
     position: absolute;
     left: 50%;
-    bottom: 167px;
+    bottom: 18px;
     color: #fff;
 }
 .page li {
@@ -36,6 +39,7 @@
     height: 70px;
     position: absolute;
     top: 122px;
+    z-index: 0;
     background: #000 url(http://img60.ddimg.cn/upload_img/00111/home/home_sprite_1507.png);
     opacity: 0.2;
     font-size: 0;
@@ -53,6 +57,8 @@ div:nth-of-type(3) {
 .carousel_bottom {
     height: 160px;
     display: flex;
+    position: relative;
+    bottom: 6px;
 }
 .carousel_bottom li {
     border-right: 1px solid #e6e6e6;
