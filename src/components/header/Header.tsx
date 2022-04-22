@@ -1,11 +1,24 @@
 import styles from "./Header.module.css";
+import axios from "axios";
+import {useEffect, useState} from "react";
 
 export const Header = () => {
+    const [headerAd, setHeaderAd] = useState("");
+
+    useEffect(() => {
+        axios.get("http://localhost:3001/ad/getByPos/header")
+            .then(res => {
+                const {data} = res;
+                setHeaderAd(data.data.list[0].img);
+            })
+            .catch(console.error)
+    }, []);
+
     return (
         <>
             {/*广告*/}
             <header className={styles.ad}>
-                <img alt={"ad"} src={"http://img61.ddimg.cn/2022/4/2/2022040217391412915.jpg"}/>
+                <img alt={"ad"} src={headerAd} />
             </header>
             {/*导航栏*/}
             <section className={styles.section}>
