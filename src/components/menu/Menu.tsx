@@ -1,7 +1,7 @@
 import styles from "./Menu.module.css";
 import menuData from "../../data/menu.json";
 import {Carousel} from "../carousel/Carousel";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 const menuItem = ["图书", "电子书", "童装童鞋", "女装", "食品", "母婴玩具",];
 const noticeBar = [
@@ -110,7 +110,7 @@ export const Menu = () => {
                         </header>
                         <ul>
                             {noticeBar[curTab].map((item, index) => (
-                                <li className={styles["notice_li"]}>
+                                <li className={styles["notice_li"]} key={index}>
                                     <a href={item.href}>{item.title}</a>
                                 </li>
                             ))}
