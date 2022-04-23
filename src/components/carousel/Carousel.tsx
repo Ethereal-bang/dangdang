@@ -1,5 +1,6 @@
 import styles from "./Carousel.module.css";
 import {useEffect, useState} from "react";
+import axios from "axios";
 
 const bannerData = [
     {
@@ -38,8 +39,35 @@ const bannerData = [
     }
 ]
 
+interface Banner {
+    img: string,
+    link: string,
+}
+
 export const Carousel = () => {
     const [cur, setCur] = useState<number>(0);
+    const initBanner = {img: "", link: ""};
+    const [banners, setBanners] = useState<[Banner]>([initBanner]);
+    // 前四张为一组
+    const [bannersBottom1, setBannersBottom1] = useState<[Banner]>([initBanner]);
+    // 后四张
+    const [bannersBottom2, setBannersBottom2] = useState<[Banner]>([initBanner]);
+
+    useEffect(() => {
+        // carousel 大图
+        axios.get("http://localhost:3001/ad/getByPos/carousel1")
+            .then(res => {
+                setBanners(res.data.data.list)
+            })
+
+        // carousel 底部栏
+        axios.get("http://localhost:3001/ad/getByPos/carousel2")
+            .then(res => {
+                setBannersBottom1(res.data.data.list.slice(4));
+                setBannersBottom2(res.data.data.list.slice(4, 8));
+            })
+
+    }, []);
 
     // 设置定时器 更换cur
     useEffect(() => {
@@ -51,24 +79,24 @@ export const Carousel = () => {
             // }
             // 用上面的方法则不能更新,由于闭包获得的cur永远是0
             setCur(cur => {
-                if (cur >= bannerData.length - 1) {
+                if (cur >= banners.length - 1) {
                     return 0;
                 }
                 return ++cur;
             })
         }), 3000);
         return () => clearInterval(interval);
-    }, [cur])
+    }, [banners.length, cur])
 
-    function turnPage(e: any) :void  {
+    function turnPage(e: any): void {
         if (e.target.innerText === "Left") {
             if (cur === 0) {
-                setCur(bannerData.length - 1);
+                setCur(banners.length - 1);
             } else {
                 setCur(cur - 1);
             }
         } else if (e.target.innerText === "Right") {
-            if (cur === bannerData.length - 1) {
+            if (cur === banners.length - 1) {
                 setCur(0);
             } else {
                 setCur(cur + 1);
@@ -83,26 +111,29 @@ export const Carousel = () => {
             <section className={styles["carousel_top"]}>
                 {/*图片*/}
                 <div>
-                    <img src={bannerData[cur].img} alt={"ad"}/>
+                    <img src={banners[cur].img} alt={"ad"}/>
                 </div>
                 {/*页码*/}
                 <ul className={styles["page"]}>
-                    {bannerData.map(item => {
-                        return <li style={(item.key - 1 === cur) ? {backgroundColor:"#ff2832"} : {}} key={item.key} onMouseEnter={turnPage}>{item.key}</li>
+                    {banners.map((item, index) => {
+                        return <li style={(index === cur) ? {backgroundColor: "#ff2832"} : {}} key={index}
+                                   onMouseEnter={turnPage}>{index + 1}</li>
                     })}
                 </ul>
                 {/*翻页按钮*/}
                 <div className={styles["turnBtn"]} onClick={turnPage}>Left</div>
                 <div className={styles["turnBtn"]} onClick={turnPage}>Right</div>
             </section>
+            {/*底部广告栏*/}
             <ul className={styles["carousel_bottom"]}>
-                {bannerData[cur].list?.map((item, index) => (
+                {bannersBottom1.map((item, index) => (
                     <li key={index}>
-                        <a href={"./"}>
+                        <a href={item.link}>
                             <img src={item.img} alt={"ad"} />
                         </a>
                     </li>
                 ))}
+
             </ul>
         </section>
     )
