@@ -1,7 +1,8 @@
 import styles from "./Menu.module.css";
 import menuData from "../../data/menu.json";
-import {Carousel} from "../carousel/Carousel";
-import {useState} from "react";
+import {Banner, Carousel} from "../carousel/Carousel";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const menuItem = ["图书", "电子书", "童装童鞋", "女装", "食品", "母婴玩具",];
 const noticeBar = [
@@ -39,6 +40,29 @@ const noticeBar = [
 export const Menu = () => {
     const [curGenre, setCurGenre] = useState(-1);   // -1为了不与面板index匹配
     const [curTab, setCurTab] = useState<0 | 1>(0);
+    const [ad, setAd] = useState<string>("");   // 右上广告
+    const [banners, setBanners] = useState<[Banner]>(); // 右下轮播图
+    const [cur, setCur] = useState<number>(0);
+
+    useEffect(() => {
+        axios.get("http://localhost:3001/ad/getByPos/menu")
+            .then(res => {
+                setAd(res.data.data.list[0].img);
+            })
+
+        axios.get("http://localhost:3001/ad/getByPos/carousel3")
+            .then(res => {
+                setBanners(res.data.data.list);
+            })
+    }, [])
+
+    // 定时更新右下角轮播图
+    useEffect(() => {
+        const interval = setInterval(() => {
+            // setCur()
+        })
+        return () => clearInterval(interval);
+    }, [])
 
     return (
         <>
@@ -95,7 +119,7 @@ export const Menu = () => {
                 <section className={styles["right"]}>
                     <a href={"./"}>
                         <img alt={"ad"}
-                             src={"http://img62.ddimg.cn/upload_img/00838/cxtc/202x195_0411-1649659867.jpg"}/>
+                             src={ad} />
                     </a>
                     <div className={styles["board"]}>
                         <header>
@@ -116,6 +140,14 @@ export const Menu = () => {
                             ))}
                         </ul>
                     </div>
+                    {/*轮播*/}
+                    <ul className={styles["carousel"]}>
+                        {banners?.map((item, index) => (
+                            <li key={index}>
+                                <img alt={"ad"} src={item.img} />
+                            </li>
+                        ))}
+                    </ul>
                 </section>
             </section>
         </>

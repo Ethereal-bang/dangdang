@@ -2,44 +2,7 @@ import styles from "./Carousel.module.css";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-const bannerData = [
-    {
-        key: 1,
-        img: "http://img60.ddimg.cn/2022/4/6/2022040611195775830.jpg",
-        list: [
-            {
-                img: "http://img63.ddimg.cn/2022/4/11/2022041118184495455.jpg",
-            }, {
-                img: "http://img63.ddimg.cn/2022/4/11/2022041118520769069.jpg",
-            }, {
-                img: "http://img63.ddimg.cn/2022/4/11/2022041118184495455.jpg",
-            }, {
-                img: "http://img63.ddimg.cn/2022/4/11/2022041118520769069.jpg",
-            }
-        ]
-    },
-    {
-        key: 2,
-        img: "http://img63.ddimg.cn/2022/4/8/2022040817124594394.jpg",
-        list: [
-            {
-                img: "http://img63.ddimg.cn/2022/4/11/2022041118184495455.jpg",
-            }, {
-                img: "http://img63.ddimg.cn/2022/4/11/2022041118520769069.jpg",
-            }, {
-                img: "http://img63.ddimg.cn/2022/4/11/2022041118184495455.jpg",
-            }, {
-                img: "http://img63.ddimg.cn/2022/4/11/2022041118520769069.jpg",
-            }
-        ]
-    },
-    {
-        key: 3,
-        img: "http://img60.ddimg.cn/2022/4/8/2022040817103038830.jpg",
-    }
-]
-
-interface Banner {
+export interface Banner {
     img: string,
     link: string,
 }

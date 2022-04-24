@@ -129,3 +129,8 @@
     line-height: 27px;
     color: #ff2832;
 }
+.carousel {
+    width: 202px;
+    height: 119px;
+    display: flex;
+}
