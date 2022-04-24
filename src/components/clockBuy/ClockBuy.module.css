@@ -1,5 +1,5 @@
 .header {
-    width: 1203px;
+    width: 1196px;
     height: 40px;
     display: flex;
 }
@@ -33,7 +33,7 @@
 /*场次 ul*/
 .time_order {
     display: flex;
-    width: 669px;
+    width: 792px;
     border-bottom: 2px solid #3c3c3c;
 }
 .time_order>li {
@@ -50,9 +50,84 @@
 
 /*厂商周*/
 .week {
-    width: 233px;
+    width: 225px;
     padding-left: 7px;
     border-bottom: 2px solid #ff2832;
     color: #ff2832;
     font-size: 20px;
+}
+
+.container {
+    width: 992px;
+    display: inline-block;
+    border: 1px solid #e6e6e6;
+    border-right: none;
+    border-bottom: none;
+    vertical-align: top;
+}
+.bookBox {
+    width: 198px;
+    height: 236px;
+    display: inline-block;
+    position: relative;
+    border-right: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+}
+.img {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 15px auto 0;
+}
+.process {
+    width: 76px;
+    height: 20px;
+    position: absolute;
+    top: 156px;
+    left: 66px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    background: #ffb7b7;
+    border-radius: 10px;
+}
+.name {
+    width: 180px;
+    height: 22px;
+    margin: 0 9px;
+    display: block;
+    position: absolute;
+    top: 180px;
+    font-size: 12px;
+    line-height: 18px;
+    color: #646464;
+    overflow: hidden;
+}
+.price {
+    position: absolute;
+    top: 200px;
+    color: #ff2832;
+    font-size: 12px;
+    margin: 0 6px;
+}
+.price span:nth-of-type(1) {
+    font-size: 16px;
+    color: #ff2832;
+}
+.price span:nth-of-type(2) {
+    position: relative;
+    left: 5px;
+    font-size: 12px;
+    color: #969696;
+    text-decoration: line-through;
+}
+
+.ad {
+    width: 203px;
+    display: inline-block;
+}
+.ad li {
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
