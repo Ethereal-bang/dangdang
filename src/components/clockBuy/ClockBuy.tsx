@@ -4,7 +4,7 @@ import axios from "axios";
 
 const timeOrder = ["00:00场", "08:00场", "12:00场", "16:00场", "20:00场",];
 
-interface Book {
+export interface Book {
     img: [string],
     name: string,
     price_now: number,

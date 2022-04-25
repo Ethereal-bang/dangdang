@@ -1,4 +1,4 @@
-import {Header, LogoLine, Menu, ClockBuy,} from "../../components";
+import {Header, LogoLine, Menu, ClockBuy, Books,} from "../../components";
 import React from "react";
 import styles from "./HomePage.module.css";
 
@@ -11,6 +11,7 @@ export const HomePage = () => {
                 <Menu />
                 <div className={styles["placeholder"]} />    {/*占位*/}
                 <ClockBuy />
+                <Books />
             </section>
         </>
     )
