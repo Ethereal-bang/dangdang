@@ -7,7 +7,7 @@ const titleItems = ["最新上架", "独家畅品", "重点推荐", "电子书"]
 const rankTitles = ["图书畅销榜", "童书新书榜"];
 const genres = ["童书", "中小学教辅", "外语", "考试", "小说", "文学", "青春文学", "成功/励志", "管理", "历史", "亲子/家教", "全部分类>"];
 
-interface Ad {
+export interface Ad {
     img: string,
     name: string,
     link: string,
