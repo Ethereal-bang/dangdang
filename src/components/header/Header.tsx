@@ -1,6 +1,7 @@
 import styles from "./Header.module.css";
 import axios from "axios";
 import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 export const Header = () => {
     const [headerAd, setHeaderAd] = useState("");
@@ -28,7 +29,7 @@ export const Header = () => {
                 <div>
                     <span>
                         欢迎光临当当，请
-                        <a href="./">登录</a>
+                        <Link to={"./login"}>登录</Link>
                     </span>
                     <span>成为会员</span>
                     <ul className={styles.ul}>
