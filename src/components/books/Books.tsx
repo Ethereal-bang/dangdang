@@ -13,12 +13,17 @@ interface Ad {
     link: string,
 }
 
+interface RankingBook extends Book {
+    ranking: number;
+}
+
 export const Books = () => {
     const [ads, setAds1] = useState<[Ad]>(); // 左侧广告
     const [ads2, setAds2] = useState<[Ad]>();   // 右侧广告
     const [curLeft, setCurLeft] = useState<number>(0);  // 左边标题下标
     const [curRight, setCurRight] = useState<number>(0);
     const [books, setBooks] = useState<Array<Array<Book>>>();   // 图书栏——六个为一组
+    const [rank, setRank] = useState<Array<Array<RankingBook>>>();    // 排行榜
 
     useEffect(() => {
         axios.get("http://localhost:3001/ad/getByPos/book1")
@@ -37,6 +42,13 @@ export const Books = () => {
                 const list = res.data.data.list;
                 // console.log(list)
                 setBooks([list.slice(0, 6), list.slice(6, 12), list.slice(12, 18), list.slice(18, 24)]);
+            })
+
+        axios.get("http://localhost:3001/goods/getByType/bookRanking")
+            .then(res => {
+                const {list} = res.data.data;
+                console.log(list)
+                setRank([list.slice(0, 10), list.slice(10, 20)]);
             })
     }, [])
 
@@ -92,6 +104,27 @@ export const Books = () => {
             <ul className={styles["menu"]}>
                 {rankTitles.map((item, index) => (
                     <li key={index}>{item}</li>
+                ))}
+            </ul>
+            <ul className={styles["rank"]}>
+                {rank?.[curRight].map((item, index) => (
+                    (index === curRight) ? (
+                        <li key={index} className={styles["cur_li"]}>
+                            <span>{item.ranking}</span>
+                            <a href={item.img[0]}>
+                                <img src={item.img[0]} alt={item.name} />
+                            </a>
+                            <a href={item.img[0]} title={item.name}>
+                                {item.name}
+
+                            </a>
+                        </li>
+                    ) : (
+                        <li key={index} className={styles["other_li"]}>
+                            <span>{item.ranking}</span>
+                            {item.name.slice(0, 11)}
+                        </li>
+                    )
                 ))}
             </ul>
         </div>

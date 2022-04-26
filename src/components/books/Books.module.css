@@ -61,8 +61,23 @@
     font-weight: normal;
 }
 
+.body {
+    display: flex;
+    margin-top: 14px;
+}
+
+.body_left {
+    width: 461px;
+    height: 436px;
+    border: 1px solid #e6e6e6;
+    overflow: hidden;
+}
+
 .genre {
-    width: 238px;
+    height: 88px;
+    position: relative;
+    top: -99px;
+    background: #fff;
 }
 .genre li {
     width: 76px;
@@ -75,20 +90,12 @@
     text-decoration: underline;
 }
 
-.body {
-    display: flex;
-    margin-top: 14px;
-}
-
-.body_left {
-}
-
 .body_right {
     vertical-align: top;
 }
 .body_right>li {
     float: left;
-    height: 220px;
+    height: 218px;
     border: 1px solid #e6e6e6;
 }
 .book_li {
@@ -96,5 +103,46 @@
     float: left;
 }
 .book_li a {
+    display: block;
+}
+
+.rank li {
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 12px;
+    line-height: 32px;
+    color: #646464;
+}
+.rank li span { /*排名*/
+    width: 39px;
+    height: 33px;
+    display: inline-block;
+    padding-left: 15px;
+    background: #fff;
+    color: #ff3228;
+    font-weight: bold;
+}
+.cur_li {
+    height: 132px;
+    display: flex;
+    vertical-align: top;
+}
+.cur_li a:nth-of-type(1) { /*图片*/
+    width: 90px;
+    height: 90px;
+    margin: 15px 0;
+    display: inline-block;
+    overflow: hidden;
+}
+.cur_li a:nth-of-type(1) img {
+    width: 90px;
+    height: 90px;
+}
+.cur_li a:nth-of-type(2) {  /*书名*/
+    width: 140px;
+    margin: 15px 0 0 5px;
+    color: #646464;
+}
+.other_li {
+    height: 32px;
     display: block;
 }
