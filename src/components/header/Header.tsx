@@ -21,7 +21,6 @@ export const Header = (props: HeaderProps) => {
             .catch(console.error)
     }, []);
 
-    // @ts-ignore
     return (
         <>
             {/*广告*/}
