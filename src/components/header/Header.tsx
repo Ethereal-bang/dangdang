@@ -1,10 +1,16 @@
 import styles from "./Header.module.css";
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
-export const Header = () => {
+interface HeaderProps {
+    signFlag: boolean,
+}
+
+export const Header = (props: HeaderProps) => {
     const [headerAd, setHeaderAd] = useState("");
+    const {signFlag} = props;
+    const location = useLocation();
 
     useEffect(() => {
         axios.get("http://localhost:3001/ad/getByPos/header")
@@ -15,11 +21,12 @@ export const Header = () => {
             .catch(console.error)
     }, []);
 
+    // @ts-ignore
     return (
         <>
             {/*广告*/}
             <header className={styles.ad}>
-                <img alt={"ad"} src={headerAd} />
+                <img alt={"ad"} src={headerAd}/>
             </header>
             {/*导航栏*/}
             <section className={styles.section}>
@@ -27,11 +34,21 @@ export const Header = () => {
                     <span>送至：</span>
                 </div>
                 <div>
-                    <span>
-                        欢迎光临当当，请
-                        <Link to={"./login"}>登录</Link>
-                    </span>
-                    <span>成为会员</span>
+                    {(signFlag) ? (
+                        <div>
+                            {/*@ts-ignore*/}
+                            <span>Hi，{location.state.username}</span>
+                            <span>[退出]</span>
+                        </div>
+                    ) : (
+                        <div>
+                            <span>
+                                欢迎光临当当，请
+                                <Link to={"./login"}>登录</Link>
+                            </span>
+                            <span>成为会员</span>
+                        </div>
+                    )}
                     <ul className={styles.ul}>
                         <li>
                             <a href={"./"} className={styles.cart}>

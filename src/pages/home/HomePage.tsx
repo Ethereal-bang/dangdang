@@ -1,11 +1,23 @@
 import {Header, LogoLine, Menu, ClockBuy, Books, Footer,} from "../../components";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./HomePage.module.css";
+import {useLocation} from "react-router-dom";
 
 export const HomePage = () => {
+    const location = useLocation();
+    const [signFlag, setSignFlag] = useState<boolean>(false);
+    
+    useEffect(() => {
+        console.log(location)
+        // @ts-ignore
+        if (location.state?.username) {
+            setSignFlag(true);
+        }
+    }, [location]);
+    
     return (
         <>
-            <Header/>
+            <Header signFlag={signFlag} />
             <section className={styles["body"]}>
                 <LogoLine/>
                 <Menu />
