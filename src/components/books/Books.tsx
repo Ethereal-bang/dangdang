@@ -48,7 +48,7 @@ export const Books = () => {
         axios.get("http://localhost:3001/goods/getByType/bookRanking")
             .then(res => {
                 const {list} = res.data.data;
-                console.log(list)
+                // console.log(list)
                 setRank([list.slice(0, 10), list.slice(10, 20)]);
             })
     }, [])

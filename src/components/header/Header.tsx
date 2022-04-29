@@ -1,32 +1,19 @@
 import styles from "./Header.module.css";
 import axios from "axios";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link, useLocation} from "react-router-dom";
+import {LogoLine} from "../logoLine/LogoLine";
 
 interface HeaderProps {
     signFlag: boolean,
 }
 
 export const Header = (props: HeaderProps) => {
-    const [headerAd, setHeaderAd] = useState("");
     const {signFlag} = props;
     const location = useLocation();
 
-    useEffect(() => {
-        axios.get("http://localhost:3001/ad/getByPos/header")
-            .then(res => {
-                const {data} = res;
-                setHeaderAd(data.data.list[0].img);
-            })
-            .catch(console.error)
-    }, []);
-
     return (
         <>
-            {/*广告*/}
-            <header className={styles.ad}>
-                <img alt={"ad"} src={headerAd}/>
-            </header>
             {/*导航栏*/}
             <section className={styles.section}>
                 <div>
@@ -97,6 +84,9 @@ export const Header = (props: HeaderProps) => {
                     </ul>
                 </div>
             </section>
-        </>
+            <section className={styles["body"]}>
+                <LogoLine/>
+            </section>
+            </>
     )
 }

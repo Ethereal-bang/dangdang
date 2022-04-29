@@ -21,7 +21,7 @@ export const Footer = () => {
     useEffect(() => {
         axios.get("http://localhost:3001/ad/getByPos/footer")
             .then(res => {
-                console.log(res.data.data.list)
+                // console.log(res.data.data.list)
                 setAds(res.data.data.list[0]);
             })
     }, [])

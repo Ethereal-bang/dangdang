@@ -1,7 +1,7 @@
 import styles from "./Menu.module.css";
 import menuData from "../../data/menu.json";
 import {Banner, Carousel} from "../carousel/Carousel";
-import {useCallback, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
 const menuItem = ["图书", "电子书", "童装童鞋", "女装", "食品", "母婴玩具",];
@@ -56,6 +56,7 @@ export const Menu = () => {
 
         axios.get("http://localhost:3001/ad/getByPos/carousel3")
             .then(res => {
+                console.log(res.data.data.list)
                 setBanners(res.data.data.list);
             })
     }, [])
@@ -79,8 +80,7 @@ export const Menu = () => {
             );
         }, 3000)
         return () => clearInterval(interval);
-    }, [])
-
+    }, [banners])
 
     return (
         <>

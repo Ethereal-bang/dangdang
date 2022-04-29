@@ -22,7 +22,7 @@ export const Login = () => {
         })
             .then(res => {
                 const {data} = res;
-                console.log(data.msg)
+                // console.log(data.msg)
                 if (data.flag) {
                     navigate("/", {
                         state: { username: submitInfo.tel } // 传递路由参数

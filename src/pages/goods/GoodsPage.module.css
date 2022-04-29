@@ -1,13 +1,19 @@
-/*详情导航版*/
-.menu {
-    height: 480px;
-    position: relative;
-    background: #fafafa;
+.body {
+    margin-top: 20px;
+    padding: 0 162px;
 }
 
 /*头部导航*/
 .menu_header {
     width: 1200px;
+}
+
+/*详情导航版*/
+.menu {
+    height: 480px;
+    position: relative;
+    background: #fafafa;
+    display: none;
 }
 
 /*所有li*/
@@ -86,53 +92,4 @@
     width: 70px;
     margin: 0;
     display: inline-block;
-}
-
-/*右部广告栏*/
-.right {
-    width: 204px;
-    height: 480px;
-    border-right: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
-    position: absolute;
-    right: -2px;
-}
-.right>a {
-    height: 194px;
-}
-.board header {
-    height: 30px;
-}
-.board header span {
-    width: 100px;
-    height: 100%;
-    display: inline-block;
-    padding-top: 2px;
-    text-align: center;
-}
-.board>div {
-    height: 143px;
-}
-.board ul {
-    height: 138px;
-    border-bottom: 1px solid #e6e6e6;
-}
-.notice_li {
-    height: 25px;
-    padding: 0 10px;
-    font-size: 12px;
-    background: no-repeat 10px -188px url(http://img60.ddimg.cn/upload_img/00111/home/home_sprite_1507.png);
-    overflow: hidden;
-}
-.notice_li a {
-    padding-left: 10px;
-    line-height: 27px;
-    color: #ff2832;
-}
-.carousel {
-    width: 202px;
-    height: 119px;
-    display: flex;
-    position: relative;
-    overflow: hidden;
 }

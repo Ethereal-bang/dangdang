@@ -2,16 +2,6 @@
   background: no-repeat url("http://img63.ddimg.cn/upload_img/00459/home/home_sprite2.png");
 }
 
-.ad {
-  height: 200px;
-  overflow: hidden;
-}
-
-.ad>img {
-  display: block;
-  margin: 0 auto;
-}
-
 /*导航栏内容*/
 .section {
   width: 1519px;
@@ -43,4 +33,9 @@
 .ul>li {
   padding: 0 8px;
   background: left -293px no-repeat url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png);
+}
+
+.body {
+  margin-top: 20px;
+  padding: 0 162px;
 }
