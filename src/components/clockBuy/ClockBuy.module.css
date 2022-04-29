@@ -73,10 +73,15 @@
     border-right: 1px solid #e6e6e6;
     border-bottom: 1px solid #e6e6e6;
 }
-.img {
-    width: 150px;
+.bookBox>a {    /*Link组件*/
+    width: 160px;
     height: 150px;
     display: block;
+    margin: 10px auto;
+}
+.img {
+    width: 160px;
+    height: 150px;
     margin: 15px auto 0;
 }
 .process {
@@ -93,9 +98,8 @@
     border-radius: 10px;
 }
 .name {
-    width: 180px;
-    height: 22px;
-    margin: 0 9px;
+    width: 162px;
+    height: 19px;
     display: block;
     position: absolute;
     top: 180px;
@@ -104,12 +108,14 @@
     color: #646464;
     overflow: hidden;
 }
+.name:hover {
+    color: #ff2832;
+}
 .price {
     position: absolute;
     top: 200px;
     color: #ff2832;
     font-size: 12px;
-    margin: 0 6px;
 }
 .price span:nth-of-type(1) {
     font-size: 16px;

@@ -1,6 +1,7 @@
 import styles from "./ClockBuy.module.css";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const timeOrder = ["00:00场", "08:00场", "12:00场", "16:00场", "20:00场",];
 
@@ -10,6 +11,7 @@ export interface Book {
     price_now: number,
     price_old: number,
     process: string,    // 已抢购d%
+    _id: string,
 }
 
 interface Ad {
@@ -61,19 +63,19 @@ export const ClockBuy = () => {
             <section className={styles["container"]}>
                 {books?.map((bookInfo, index) => (
                     <div key={index} className={styles["bookBox"]}>
-                        <a className={styles["img"]} href={"./"} title={bookInfo.name}>
-                            <img src={bookInfo.img[0]} alt={"book info"} />
-                        </a>
-                        <div className={styles["line"]}>
-                            <span/>
-                            <div className={styles["process"]}>{bookInfo.process}</div>
-                        </div>
-                        <a className={styles["name"]} href={"./"} title={bookInfo.name}>{bookInfo.name}</a>
-                        <div className={styles["price"]}>
-                            ￥
-                            <span>{bookInfo.price_now}</span>
-                            <span>{bookInfo.price_old}</span>
-                        </div>
+                        <Link to={`./goods/${bookInfo._id}`}>
+                            <img src={bookInfo.img[0]} alt={"book info"} title={bookInfo.name} />
+                            <div className={styles["line"]}>
+                                <span/>
+                                <div className={styles["process"]}>{bookInfo.process}</div>
+                            </div>
+                            <span className={styles["name"]} title={bookInfo.name}>{bookInfo.name}</span>
+                            <div className={styles["price"]}>
+                                ￥
+                                <span>{bookInfo.price_now}</span>
+                                <span>{bookInfo.price_old}</span>
+                            </div>
+                        </Link>
                     </div>
                 ))}
             </section>
