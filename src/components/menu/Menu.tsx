@@ -1,7 +1,7 @@
 import styles from "./Menu.module.css";
 import menuData from "../../data/menu.json";
 import {Banner, Carousel} from "../carousel/Carousel";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import axios from "axios";
 
 const menuItem = ["图书", "电子书", "童装童鞋", "女装", "食品", "母婴玩具",];
@@ -41,9 +41,13 @@ export const Menu = () => {
     const [curGenre, setCurGenre] = useState(-1);   // -1为了不与面板index匹配
     const [curTab, setCurTab] = useState<0 | 1>(0);
     const [ad, setAd] = useState<string>("");   // 右上广告
-    const [banners, setBanners] = useState<[Banner]>(); // 右下轮播图
+    // 右下轮播图
+    const [banners, setBanners] = useState<[Banner]>();
     const [cur, setCur] = useState<number>(0);
+    const [next, setNext] = useState<number>(1);
+    const [offset, setOffset] = useState<number>(0);
 
+    /*请求图片*/
     useEffect(() => {
         axios.get("http://localhost:3001/ad/getByPos/menu")
             .then(res => {
@@ -58,11 +62,25 @@ export const Menu = () => {
 
     // 定时更新右下角轮播图
     useEffect(() => {
+        // 下一轮播下标
+        function getNext (curIndex:number) :number {
+            if (banners && curIndex === banners.length - 1) {
+                return 0;
+            } else {
+                return ++curIndex;
+            }
+        }
+
         const interval = setInterval(() => {
-            // setCur()
-        })
+            setCur(cur => getNext(cur));
+            setNext(next => getNext(next));
+            setOffset(offset =>
+                offset + 202
+            );
+        }, 3000)
         return () => clearInterval(interval);
     }, [])
+
 
     return (
         <>
@@ -141,12 +159,16 @@ export const Menu = () => {
                         </ul>
                     </div>
                     {/*轮播*/}
-                    <ul className={styles["carousel"]}>
-                        {banners?.map((item, index) => (
-                            <li key={index}>
-                                <img alt={"ad"} src={item.img} />
-                            </li>
-                        ))}
+                    <ul className={styles["carousel"]} style={{
+                        // transform: `translateX(${offset}px)`,
+                        transition: "transform 2s 1s",
+                    }}>
+                        <li>
+                            <img alt={"ad"} src={banners?.[cur].img} />
+                        </li>
+                        {/*<li>*/}
+                        {/*    <img alt={"ad"} src={banners?.[next].img} />*/}
+                        {/*</li>*/}
                     </ul>
                 </section>
             </section>

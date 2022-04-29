@@ -130,7 +130,9 @@
     color: #ff2832;
 }
 .carousel {
-    width: 202px;
+    width: 900px;
     height: 119px;
     display: flex;
+    position: relative;
+    overflow: hidden;
 }
