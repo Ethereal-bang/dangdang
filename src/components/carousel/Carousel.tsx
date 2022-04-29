@@ -26,7 +26,7 @@ export const Carousel = () => {
         // carousel 底部栏
         axios.get("http://localhost:3001/ad/getByPos/carousel2")
             .then(res => {
-                setBannersBottom1(res.data.data.list.slice(4));
+                setBannersBottom1(res.data.data.list.slice(0, 4));
                 setBannersBottom2(res.data.data.list.slice(4, 8));
             })
 
@@ -89,13 +89,23 @@ export const Carousel = () => {
             </section>
             {/*底部广告栏*/}
             <ul className={styles["carousel_bottom"]}>
-                {bannersBottom1.map((item, index) => (
-                    <li key={index}>
-                        <a href={item.link}>
-                            <img src={item.img} alt={"ad"} />
-                        </a>
-                    </li>
-                ))}
+                {cur % 2 === 0 ? (
+                    bannersBottom1.map((item, index) => (
+                            <li key={index}>
+                                <a href={item.link}>
+                                    <img src={item.img} alt={"ad"} />
+                                </a>
+                            </li>
+                        ))
+                ) : (
+                    bannersBottom2.map((item, index) => (
+                        <li key={index}>
+                            <a href={item.link}>
+                                <img src={item.img} alt={"ad"} />
+                            </a>
+                        </li>
+                    ))
+                )}
 
             </ul>
         </section>
