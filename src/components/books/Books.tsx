@@ -2,6 +2,7 @@ import styles from "./Books.module.css";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Book} from "../clockBuy/ClockBuy";
+import {Link} from "react-router-dom";
 
 const titleItems = ["最新上架", "独家畅品", "重点推荐", "电子书"];
 const rankTitles = ["图书畅销榜", "童书新书榜"];
@@ -87,14 +88,14 @@ export const Books = () => {
                     </li>
                     {books?.[curLeft].map((item, index) => (
                         <li className={styles["book_li"]} key={index}>
-                            <a href={item.img[0]}>
+                            <Link to={`/goods/${item._id}`} title={item.name}>
                                 <img alt={item.name} src={item.img[0]}/>
-                            </a>
-                            <a href={item.img[0]}>{item.name}</a>
-                            <div>
-                                <span>￥{item.price_now}</span>
-                                <span>￥{item.price_old}</span>
-                            </div>
+                                <span>{item.name}</span>
+                                <div>
+                                    <span>￥{item.price_now}</span>
+                                    <span>￥{item.price_old}</span>
+                                </div>
+                            </Link>
                         </li>
                     ))}
                 </ul>
