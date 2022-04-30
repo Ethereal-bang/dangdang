@@ -1,4 +1,5 @@
 import styles from "./LogoLine.module.css";
+import {Link} from "react-router-dom";
 
 export const LogoLine = () => {
     return (
@@ -20,7 +21,7 @@ export const LogoLine = () => {
             {/*Cart、Order*/}
             <section className={styles["cart"]}>
                 <div>
-                    <a href={"./"}>购物车 0</a>
+                    <Link to={"/shoppingCart"}>购物车 0</Link>
                 </div>
                 <a href={"./"}>我的订单</a>
             </section>
