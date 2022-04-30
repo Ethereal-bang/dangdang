@@ -56,7 +56,6 @@ export const Menu = () => {
 
         axios.get("http://localhost:3001/ad/getByPos/carousel3")
             .then(res => {
-                console.log(res.data.data.list)
                 setBanners(res.data.data.list);
             })
     }, [])

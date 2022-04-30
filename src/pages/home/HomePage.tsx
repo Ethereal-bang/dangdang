@@ -1,4 +1,4 @@
-import {Header, LogoLine, Menu, ClockBuy, Books, Footer,} from "../../components";
+import {Header, Menu, ClockBuy, Books, Footer,} from "../../components";
 import React, {useEffect, useState} from "react";
 import styles from "./HomePage.module.css";
 import {Link, useLocation} from "react-router-dom";
