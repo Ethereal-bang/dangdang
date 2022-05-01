@@ -1,10 +1,9 @@
 import styles from "./Header.module.css";
-import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Link, useLocation} from "react-router-dom";
 import {LogoLine} from "../logoLine/LogoLine";
 
-interface HeaderProps {
+export interface HeaderProps {
     signFlag: boolean,
 }
 

@@ -1,0 +1,116 @@
+/*导航栏内容*/
+.header {
+    width: 1600px;
+    height: 34px;
+    padding: 0 159px; /*两边留白*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #f9f9f9;
+    color: #646464;
+    font: 12px 'Hiragino Sans GB',"simsun","Arial";
+}
+.header ul {
+    padding: 0;
+    display: flex;
+}
+.header ul>li {
+    padding: 0 8px;
+    background: left -293px no-repeat url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png);
+}
+
+
+/*广告栏*/
+.ad {
+    width: 960px;
+    display: block;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+/*标题*/
+.title {
+    width: 960px;
+    display: flex;
+    margin: 20px auto;
+    justify-content: space-between;
+}
+/*步骤*/
+.procedure {
+    width: 634px;
+    height: 34px;
+    display: flex;
+    justify-content: space-between;
+    color: #646464;
+    background: 0 0 no-repeat url("http://shopping.dangdang.com/shoppingcart/images/procedure_bg.png");
+}
+.procedure span {
+    width: 206px;
+    display: inline-block;
+    text-align: center;
+    font: bold 14px/36px "Microsoft Yahei";
+}
+.curProcedure {
+    color: #fff;
+}
+/*线*/
+.line {
+    width: 100%;
+    height: 4px;
+    margin: 20px;
+    background: #ff2832;
+}
+
+
+.body {
+    width: 960px;
+    margin: 0 auto;
+}
+/*配送地址*/
+.address {
+    height: 22px;
+    display: inline-flex;
+    margin: 15px 0;
+    padding: 0 15px;
+    background: #fcfcfc;
+    border: 1px solid #ebebeb;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #969696;
+    line-height: 22px;
+}
+.address i {    /*图片*/
+    width: 22px;
+    margin-right: 4px;
+    background: url(http://shopping.dangdang.com/shoppingcart/images/icon_sprite.png) 0 5px no-repeat;
+}
+.address>div {  /*地址*/
+    border: 1px solid #ebebeb;
+    color: #646464;
+}
+.address>div>span { /*目前地址*/
+    height: 19px;
+    display: block;
+    padding: 0 14px 0 5px;
+    background: url(http://shopping.dangdang.com/shoppingcart/images/icon_sprite.png) no-repeat right -56px #fff;
+}
+/*购物车列表*/
+.list_header {
+    display: flex;
+    justify-content: space-between;
+    color: #969696;
+}
+.check {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    border: 2px solid #bcbcbc;
+    border-radius: 3px;
+    font-size: 10px;
+    line-height: 10px;
+    color: #fff;
+}
+.check:hover {
+    border-color: #ff2832;
+    background-color: #ff2832;
+}
