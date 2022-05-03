@@ -7,10 +7,19 @@ import axios from "axios";
 const procedure = ["我的购物车", "填写订单", "完成订单"];
 const title = ["商品信息", "单价（元）", "数量", "金额（元）", "操作"];
 
+interface Goods {
+    name: string,
+    img: string,
+    price_now: number,
+    _id: string,
+    num: number,    // 数目
+}
+
 export const ShoppingCartPage = () => {
     const location = useLocation();
     const [bar, setBar] = useState<Ad>();
     const [curProcedure, setCurProcedure] = useState<number>(0);
+    const [shoppingList, setShoppingList] = useState<Goods[]>();
 
     // 请求广告栏图片
     useEffect(() => {
@@ -19,6 +28,17 @@ export const ShoppingCartPage = () => {
                 setBar(res.data.data.list[0])
             })
     }, [])
+
+    // 请求购物车
+    useEffect(() => {
+        // 1.获取当前用户购物车ID
+        const shoppingCartID = localStorage.getItem("shoppingCartId") || "626e7d612c2711dc4cf93fe6";
+        const url = `http://localhost:3001/shoppingCart/${shoppingCartID}/show`;
+        axios.get(url)
+            .then(ret => {
+                console.log(ret.data.data)
+            })
+    }, []);
 
     return <>
         {/*导航栏*/}
