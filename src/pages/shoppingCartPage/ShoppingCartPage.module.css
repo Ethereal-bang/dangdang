@@ -114,3 +114,50 @@
     border-color: #ff2832;
     background-color: #ff2832;
 }
+
+.sum_bar {
+    width: 100%;
+    z-index: 1;
+    position: static;
+    bottom: -20px;
+}
+.sum_bar>div {  /*背景块*/
+    width: 960px;
+    height: 72px;
+    margin: 20px auto;
+    position: relative;
+    background: url("http://shopping.dangdang.com/shoppingcart/images/shopping_total.png") 0 center no-repeat;
+    color: #969696;
+    font-size: 12px;
+}
+.bar_left {
+    width: 430px;
+    display: flex;
+    justify-content: space-around;
+    line-height: 58px;
+}
+.bar_right {
+    width: 530px;
+    height: 61px;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+.bar_right>div {
+    width: 209px;
+}
+.bar_right span:nth-of-type(1) {    /*金额*/
+    color: #ff2832;
+    font-size: 18px;
+}
+.bar_right>a {  /*结算*/
+    width: 116px;
+    height: 38px;
+    background: #F00;
+    border-radius: 2px;
+    font: bold 18px/38px "Microsoft Yahei";
+    color: #fff;
+    text-align: center;
+}

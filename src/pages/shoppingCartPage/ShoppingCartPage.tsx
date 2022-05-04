@@ -1,5 +1,5 @@
 import styles from "./ShoppingCartPage.module.css";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {Ad} from "../../components";
 import axios from "axios";
@@ -15,11 +15,25 @@ interface Goods {
     num: number,    // 数目
 }
 
+interface CartInfo {
+    price: number,
+    num: number,
+    discount?: number,
+}
+
+const initCartInfo: CartInfo = {
+    price: 0,
+    num: 0,
+    discount: 0,
+}
+
 export const ShoppingCartPage = () => {
     const location = useLocation();
     const [bar, setBar] = useState<Ad>();
     const [curProcedure, setCurProcedure] = useState<number>(0);
     const [shoppingList, setShoppingList] = useState<Goods[]>();
+    const [total, setTotal] = useState<CartInfo>(initCartInfo);
+    const [cur, setCur] = useState<CartInfo>(initCartInfo);
 
     // 请求广告栏图片
     useEffect(() => {
@@ -32,11 +46,18 @@ export const ShoppingCartPage = () => {
     // 请求购物车
     useEffect(() => {
         // 1.获取当前用户购物车ID
-        const shoppingCartID = localStorage.getItem("shoppingCartId") || "626e7d612c2711dc4cf93fe6";
+        const shoppingCartID = localStorage.getItem("shoppingCartId") || "627145752276a450b5ca7a50";
         const url = `http://localhost:3001/shoppingCart/${shoppingCartID}/show`;
+        // 2.请求购物车
         axios.get(url)
             .then(ret => {
-                console.log(ret.data.data)
+                // console.log(ret.data)
+                const data = ret.data;
+                setShoppingList(data.goodsList)
+                setTotal({
+                    price: data.price,
+                    num: data.count,
+                })
             })
     }, []);
 
@@ -142,6 +163,37 @@ export const ShoppingCartPage = () => {
             </ul>
             {/*购物车列表*/}
 
+        </section>
+
+        {/*结算栏*/}
+        <section className={styles["sum_bar"]}>
+            <div>   {/*背景条*/}
+                <section className={styles["bar_left"]}>
+                    <div>
+                        <i className={styles["check"]}>√</i>   {/*勾选框*/}
+                        全选
+                    </div>
+                    <a href={"#!"}>批量删除</a>
+                    <b>
+                        已选择
+                        <span>#</span>
+                        件商品
+                    </b>
+                </section>
+                <section className={styles["bar_right"]}>
+                    <div>
+                        <p>
+                            总计(不含运费)：
+                            <span>{cur.price}</span>
+                        </p>
+                        <p>
+                            已节省：
+                            <span>{cur.discount}</span>
+                        </p>
+                    </div>
+                    <a href={"#!"}>结算</a>
+                </section>
+            </div>
         </section>
     </>
 }
