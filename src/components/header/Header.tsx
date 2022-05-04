@@ -1,7 +1,6 @@
 import styles from "./Header.module.css";
 import React from "react";
 import {Link, useLocation} from "react-router-dom";
-import {LogoLine} from "../logoLine/LogoLine";
 
 export interface HeaderProps {
     signFlag: boolean,
@@ -83,9 +82,6 @@ export const Header = (props: HeaderProps) => {
                     </ul>
                 </div>
             </section>
-            <section className={styles["body"]}>
-                <LogoLine/>
-            </section>
-            </>
+        </>
     )
 }

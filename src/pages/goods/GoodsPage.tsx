@@ -3,9 +3,9 @@ import styles from "./GoodsPage.module.css";
 import menuData from "../../data/menu.json";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 
-const menuItem = ["图书", "电子书", "童装童鞋", "女装", "食品", "母婴玩具",];
+export const menuItem = ["图书", "电子书", "童装童鞋", "女装", "食品", "母婴玩具",];
 
 interface BookInfo {
     author: string,
@@ -16,6 +16,7 @@ interface BookInfo {
     name: string,
     price_now: number,
     price_old: number,
+    _id: string,
 }
 
 export const GoodsPage = () => {
@@ -24,6 +25,7 @@ export const GoodsPage = () => {
     const location = useLocation();
     const [book, setBook] = useState<BookInfo>();
     const [buyNum, setBuyNum] = useState<number>(1);    // 添加到购物车数量
+    const navigate = useNavigate();
 
     // 请求广告栏图片
     useEffect(() => {
@@ -38,10 +40,30 @@ export const GoodsPage = () => {
         const goodsID = location.pathname.slice(7);
         axios.get(`http://localhost:3001/goods/getById/${goodsID}`)
             .then(res => {
-                console.log(res.data.data)
                 setBook(res.data.data);
             })
     }, [location])
+
+    // 加入购物车
+    function handleCart() {
+        const tel = localStorage.getItem("tel") || 111;
+        const url = `http://localhost:3001/shoppingCart/${tel}/addGoods`;
+        axios.get(url, {
+            params: {
+                id: book?._id,
+                num: buyNum,
+            }
+        })
+            .then(res => {
+                console.log(res.data)
+                navigate("/goods/added", {
+                    state: {
+                        name: res.data.data.name,
+                        num: res.data.data.num,
+                    }
+                })
+            })
+    }
 
     return <>
         <Header signFlag={false} />
@@ -116,7 +138,7 @@ export const GoodsPage = () => {
                     </div>
                     <ul>
                         {book?.img.map((img, index) => (
-                            <li>
+                            <li key={index}>
                                 <img src={img} alt={"cover"} key={index} />
                             </li>
                         ))}
@@ -158,11 +180,15 @@ export const GoodsPage = () => {
                     </section>
                     <section className={styles["buy"]}>
                         <div>
-                            <input value={buyNum} type={"text"} />
+                            <input
+                                value={buyNum}
+                                type={"text"}
+                                onChange={(e) => setBuyNum(parseInt(e.target.value))}
+                            />
                             <button onClick={() => setBuyNum(buyNum + 1)}>+</button>
                             <button onClick={() => setBuyNum(buyNum - 1)}>-</button>
                         </div>
-                        <div>
+                        <div onClick={handleCart}>
                             <div />
                             <span>加入购物车</span>
                         </div>
