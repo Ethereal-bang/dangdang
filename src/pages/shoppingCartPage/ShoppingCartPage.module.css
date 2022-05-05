@@ -161,3 +161,55 @@
     color: #fff;
     text-align: center;
 }
+
+.list>p {   /*店铺名*/
+    padding-left: 15px;
+}
+.list table {
+    width: 961px;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    font-size: 12px;
+    color: #323232;
+ }
+table td {
+    padding-top: 17px;
+}
+td:nth-of-type(n + 2) {
+    vertical-align: top;
+}
+tr>td:nth-of-type(n + 3) {
+    border-bottom: 1px solid #ebebeb;
+}
+.col_img img {
+    width: 80px;
+}
+.col_name:hover {
+    color: #ff2832;
+    text-decoration: underline;
+}
+.col_num {
+    height: 102px;
+    margin-right: 0;
+}
+.col_num input {
+    width: 30px;
+}
+
+.shop_sum {
+    height: 53px;
+    background: #fafafa;
+}
+.shop_sum b {
+    display: inline-block;
+    margin-left: 50px;
+    line-height: 52px;
+    font-size: 12px;
+}
+.shop_sum span {
+    display: inline-block;
+    float: right;
+    margin: 15px 150px 0 0;
+    color: #ff2832;
+    font-size: 16px;
+ }

@@ -21,6 +21,10 @@ interface CartInfo {
     discount?: number,
 }
 
+interface CartGoods extends Goods {
+    num: number,
+}
+
 const initCartInfo: CartInfo = {
     price: 0,
     num: 0,
@@ -31,7 +35,7 @@ export const ShoppingCartPage = () => {
     const location = useLocation();
     const [bar, setBar] = useState<Ad>();
     const [curProcedure, setCurProcedure] = useState<number>(0);
-    const [shoppingList, setShoppingList] = useState<Goods[]>();
+    const [shoppingMapList, setShoppingMapList] = useState<Map<string, CartGoods>>();
     const [total, setTotal] = useState<CartInfo>(initCartInfo);
     const [cur, setCur] = useState<CartInfo>(initCartInfo);
 
@@ -51,9 +55,20 @@ export const ShoppingCartPage = () => {
         // 2.请求购物车
         axios.get(url)
             .then(ret => {
-                // console.log(ret.data)
-                const data = ret.data;
-                setShoppingList(data.goodsList)
+                console.log(ret.data.data)
+                const {data} = ret.data;
+                const shoppingListMap = new Map<string, CartGoods>();
+                data.goodsList.forEach((item: Goods) => {
+                    if (shoppingListMap.has(item._id)) {    // 商品已存在该列表，数目加一
+                        const cur = shoppingListMap.get(item._id) as CartGoods;
+                        cur.num++;
+                        shoppingListMap.set(item._id, cur);
+                    } else {    // 不存在与列表，加入
+                        item.num = 1;
+                        shoppingListMap.set(item._id, item);
+                    }
+                })
+                setShoppingMapList(shoppingListMap);
                 setTotal({
                     price: data.price,
                     num: data.count,
@@ -162,7 +177,50 @@ export const ShoppingCartPage = () => {
                 ))}
             </ul>
             {/*购物车列表*/}
-
+            <div className={styles["list"]}>
+                <p>
+                    <i className={styles["check"]}>√</i>   {/*勾选框*/}
+                    当当自营
+                </p>
+                <table>
+                    {shoppingMapList && Array.from(shoppingMapList).map(item => (
+                        <tr key={item[0]}>
+                            <td width={46} align={"center"}>
+                                <i className={styles["check"]}>√</i>   {/*勾选框*/}
+                            </td>
+                            <td width={120} className={styles["col_img"]}>
+                                <img src={item[1].img} alt={"book cover"} />
+                            </td>
+                            <td width={240} valign={"top"} className={styles["col_name"]}>
+                                <a href={"#!"}>{item[1].name}</a>
+                            </td>
+                            <td width={140}>
+                                {item[1].price_now}
+                            </td>
+                            <td width={170} className={styles["col_num"]}>
+                                <button>-</button>
+                                <input
+                                    value={1}
+                                    type={"text"}
+                                    onChange={(e) => (console.log(e))}
+                                />
+                                <button>+</button>
+                            </td>
+                            <td width={80}>
+                                {item[1].price_now}
+                            </td>
+                            <td align={"right"}>
+                                <a href={"#!"}>移入收藏</a>
+                                <a href={"#!"}>删除</a>
+                            </td>
+                        </tr>
+                    ))}
+                </table>
+                <div className={styles["shop_sum"]}>
+                    <b>店铺合计</b>
+                    <span>￥#</span>
+                </div>
+            </div>
         </section>
 
         {/*结算栏*/}
