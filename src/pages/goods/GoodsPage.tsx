@@ -66,7 +66,7 @@ export const GoodsPage = () => {
     }
 
     return <>
-        <Header signFlag={false} />
+        <Header />
 
         <section className={styles["body"]}>
             {/*头部导航栏*/}

@@ -80,8 +80,7 @@ export const ShoppingCartPage = () => {
         {/*导航栏*/}
         <header className={styles["header"]}>
             <div>
-                {/*@ts-ignore*/}
-                <span>Hi，{15086861179 || location.state.username}</span>
+                <span>Hi，{localStorage.getItem("tel")}</span>
                 <span>[退出]</span>
             </div>
             <ul>

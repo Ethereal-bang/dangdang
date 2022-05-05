@@ -51,6 +51,16 @@
 .login {
     padding: 0 40px 0 40px;
 }
+.login>div {
+    position: relative;
+    margin-bottom: 10px;
+}
+.login label:nth-of-type(1) {
+    font-size: 12px;
+    color: #828282;
+    position: absolute;
+    top: 0;
+}
 
 .agree {
     margin: 20px 0;

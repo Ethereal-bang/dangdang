@@ -13,7 +13,7 @@ export const AddedCartPage = () => {
     const state = useLocation().state as LocationState;
 
     return <>
-        <Header signFlag={true} />
+        <Header />
 
         <section className={styles["body"]}>
             <section className={styles["left"]}>

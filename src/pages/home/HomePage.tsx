@@ -32,7 +32,7 @@ export const HomePage = () => {
             <Link to={"/"} className={styles["ad"]}>
                 <img alt={"ad"} src={headerAd}/>
             </Link>
-            <Header signFlag={signFlag} />
+            <Header />
 
             <section className={styles["body"]}>
                 <LogoLine />

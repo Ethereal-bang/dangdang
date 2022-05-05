@@ -1,14 +1,8 @@
 import styles from "./Header.module.css";
 import React from "react";
-import {Link, useLocation} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-export interface HeaderProps {
-    signFlag: boolean,
-}
-
-export const Header = (props: HeaderProps) => {
-    const {signFlag} = props;
-    const location = useLocation();
+export const Header = () => {
 
     return (
         <>
@@ -18,11 +12,10 @@ export const Header = (props: HeaderProps) => {
                     <span>送至：</span>
                 </div>
                 <div>
-                    {(signFlag) ? (
+                    {localStorage.getItem("tel") ? (
                         <div>
-                            {/*@ts-ignore*/}
-                            <span>Hi，{location.state.username}</span>
-                            <span>[退出]</span>
+                            <span>Hi，{localStorage.getItem("tel")}</span>
+                            <a onClick={() => localStorage.clear()} href={"/"}>[退出]</a>
                         </div>
                     ) : (
                         <div>
