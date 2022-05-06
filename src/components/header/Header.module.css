@@ -26,13 +26,31 @@
 
 /*导航栏第三部分内容*/
 .ul {
+  height: 22px;
   padding: 0;
   display: flex;
 }
 
 .ul>li {
-  padding: 0 8px;
+  height: 22px;
   background: left -293px no-repeat url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png);
+  line-height: 22px;
+}
+.ul li>a {
+  padding: 0 7px 0 8px;
+}
+.ul .expand_li>a {  /*扩展列表标题*/
+  padding-right: 27px;
+  background: url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png) no-repeat right -308px;
+}
+.expand_li>a:hover {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+}
+.ul>.expand_li ul { /*扩展列表*/
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  position: absolute; /*脱离文档流，使其显示在搜索框之上*/
 }
 
 .body {

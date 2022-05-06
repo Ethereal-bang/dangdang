@@ -1,5 +1,5 @@
 import styles from "./ShoppingCartPage.module.css";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {Ad} from "../../components";
 import axios from "axios";
@@ -84,9 +84,9 @@ export const ShoppingCartPage = () => {
             </div>
             <ul>
                 <li>
-                    <a href={"./"} className={styles.cart}>
+                    <Link to={"/shoppingCart"} className={styles.cart}>
                         购物车
-                    </a>
+                    </Link>
                 </li>
                 <li>
                     <a href={"./"}>
@@ -138,9 +138,9 @@ export const ShoppingCartPage = () => {
 
         {/*标题*/}
         <section className={styles["title"]}>
-            <a href={"#!"}>
+            <Link to={"/"}>
                 <img alt={"logo"} src={"http://shopping.dangdang.com/shoppingcart/images/dd_logo.jpg?v=20220225"}/>
-            </a>
+            </Link>
             <div className={styles["procedure"]}>
                 {procedure.map((item, index) => (
                     <span

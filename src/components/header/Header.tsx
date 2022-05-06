@@ -1,8 +1,20 @@
 import styles from "./Header.module.css";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import headerTitle from "../../data/headerTitle.json";
+
+const initHoverState = [false, false, false, false, false, false];
 
 export const Header = () => {
+    const [hoverState, setHoverState] = useState<boolean[]>(initHoverState);  // 悬浮菜单显示状态
+
+    function changeHoverState(e: any, flag: boolean, index: number) {
+        setHoverState((hoverState) => [
+            ...hoverState.slice(0, index),
+            flag,
+            ...hoverState.slice(index + 1)
+        ]);
+    }
 
     return (
         <>
@@ -28,50 +40,36 @@ export const Header = () => {
                     )}
                     <ul className={styles.ul}>
                         <li>
-                            <a href={"./"} className={styles.cart}>
+                            <Link to={"/shoppingCart"} className={styles.cart}>
                                 购物车
-                            </a>
+                            </Link>
                         </li>
-                        <li>
-                            <a href={"./"}>
-                                我的订单
-                            </a>
-                        </li>
-                        <li>
-                            <span>
-                                我的云书房
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                我的当当
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                当当拼团
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                企业采购
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                小说投稿
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                客户服务
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                切换无障碍
-                            </span>
-                        </li>
+                        {headerTitle.map((item, index) => (
+                            item.expand ? (
+                                <li
+                                    className={styles["expand_li"]}
+                                    key={index}>
+                                    <Link
+                                        to={item.url}
+                                        onMouseEnter={e => changeHoverState(e, true, index)}
+                                        onMouseLeave={e => changeHoverState(e, false, index)}
+                                    >{item.name}</Link>
+                                    <ul style={hoverState[index] ? {display: "block"} : {display: "none"}}>
+                                        {item.expand.map((item2, index2) => (
+                                            <li key={index2}>
+                                                <Link to={item2.url}>
+                                                    {item2.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </li>
+                            ) : (
+                                <li key={index}>
+                                    <Link to={item.url}>{item.name}</Link>
+                                </li>
+                            )
+                        ))}
                     </ul>
                 </div>
             </section>
