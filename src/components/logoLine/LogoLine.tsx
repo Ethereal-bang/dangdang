@@ -12,9 +12,12 @@ export const LogoLine = () => {
                 <section className={styles["search_box"]}>
                     <div>
                         <input placeholder={"白茶新书"}/>
-                        <span>全部分类</span>
+                        <span>
+                            全部分类
+                            <i />
+                        </span>
                     </div>
-                    <input type={"button"} />
+                    <button />
                 </section>
                 <div>热搜：</div>
             </section>

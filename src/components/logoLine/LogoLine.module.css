@@ -1,7 +1,6 @@
 /*Search*/
 .search_box {
     display: flex;
-    align-items: center;
 }
 
 /*搜索框*/
@@ -10,42 +9,41 @@
     height: 43px;
     padding: 0;
     margin: 0;
-
     display: inline-block;
-
     border: 2px solid #ff2832;
     box-sizing: border-box;
+    line-height: 12px;
 }
 
 /*input框*/
 .search_box>div>input:nth-of-type(1) {
     width: 410px;
-
     padding-left: 9px;
-
     display: inline-block;
-
     border: none;
 }
 
 /*全部分类*/
 .search_box>div>span {
-    width: 92px;
-    padding-left: 14px;
-
+    /*width: 92px;*/
+    padding-left: 23px;
     display: inline-block;
-
-    font: 16px/36px "Microsoft Yahei";
+    font: 16px/39px "Microsoft Yahei";
     color: #969696;
-
     background-color: #f6f6f6;
+}
+.search_box>div>span i {    /*箭头*/
+    width: 13px;
+    height: 7px;
+    display: inline-block;
+    margin: 0 6px 0 10px;
+    background: url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png) no-repeat -14px -90px;
 }
 
 /*搜索提交*/
-.search_box>input:nth-of-type(1) {
+.search_box>button:nth-of-type(1) {
     width: 48px;
-    height: 44px;
-
+    height: 43px;
     padding: 0;
     margin: 0;
     background: 0 -346px url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png) no-repeat;
