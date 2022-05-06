@@ -14,7 +14,6 @@ export const LoginPage = () => {
     const navigate = useNavigate();
 
     function submitForm(e: any) {
-        console.log("submit: " + submitInfo)
         if (loginState === "login") {
             axios.get(`http://localhost:3001/users/login`, {
                 params: {
@@ -24,7 +23,6 @@ export const LoginPage = () => {
             })
                 .then(res => {
                     const {data} = res;
-                    console.log(data)
                     if (data.flag) {
                         saveToLocal(data.data);
                         navigate("/")
@@ -49,9 +47,8 @@ export const LoginPage = () => {
     }
 
     function saveToLocal(data: any) {
-        console.log("saveTo: " + data)
         localStorage.setItem("tel", data.tel);
-        localStorage.setItem("shoppingCartId", data.shoppingCart);
+        localStorage.setItem("shoppingCartId", data.shoppingCartId);
     }
 
     function changeTel(e: any) {

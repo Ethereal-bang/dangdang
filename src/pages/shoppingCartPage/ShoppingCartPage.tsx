@@ -32,7 +32,6 @@ const initCartInfo: CartInfo = {
 }
 
 export const ShoppingCartPage = () => {
-    const location = useLocation();
     const [bar, setBar] = useState<Ad>();
     const [curProcedure, setCurProcedure] = useState<number>(0);
     const [shoppingMapList, setShoppingMapList] = useState<Map<string, CartGoods>>();
@@ -55,7 +54,7 @@ export const ShoppingCartPage = () => {
         // 2.请求购物车
         axios.get(url)
             .then(ret => {
-                console.log(ret.data.data)
+                console.log(ret.data)
                 const {data} = ret.data;
                 const shoppingListMap = new Map<string, CartGoods>();
                 data.goodsList.forEach((item: Goods) => {
@@ -81,7 +80,7 @@ export const ShoppingCartPage = () => {
         <header className={styles["header"]}>
             <div>
                 <span>Hi，{localStorage.getItem("tel")}</span>
-                <span>[退出]</span>
+                <a onClick={localStorage.clear} href={"#!"} >[退出]</a>
             </div>
             <ul>
                 <li>
