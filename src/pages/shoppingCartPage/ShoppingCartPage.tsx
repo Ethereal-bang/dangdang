@@ -1,7 +1,7 @@
 import styles from "./ShoppingCartPage.module.css";
 import {Link, useLocation} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import {Ad} from "../../components";
+import {Ad, Header} from "../../components";
 import axios from "axios";
 
 const procedure = ["我的购物车", "填写订单", "完成订单"];
@@ -78,59 +78,8 @@ export const ShoppingCartPage = () => {
     return <>
         {/*导航栏*/}
         <header className={styles["header"]}>
-            <div>
-                <span>Hi，{localStorage.getItem("tel")}</span>
-                <a onClick={localStorage.clear} href={"#!"} >[退出]</a>
-            </div>
-            <ul>
-                <li>
-                    <Link to={"/shoppingCart"} className={styles.cart}>
-                        购物车
-                    </Link>
-                </li>
-                <li>
-                    <a href={"./"}>
-                        我的订单
-                    </a>
-                </li>
-                <li>
-                            <span>
-                                我的云书房
-                            </span>
-                </li>
-                <li>
-                            <span>
-                                我的当当
-                            </span>
-                </li>
-                <li>
-                            <span>
-                                当当拼团
-                            </span>
-                </li>
-                <li>
-                            <span>
-                                企业采购
-                            </span>
-                </li>
-                <li>
-                            <span>
-                                小说投稿
-                            </span>
-                </li>
-                <li>
-                            <span>
-                                客户服务
-                            </span>
-                </li>
-                <li>
-                            <span>
-                                切换无障碍
-                            </span>
-                </li>
-            </ul>
+            <Header />
         </header>
-
         {/*广告条*/}
         <a className={styles["ad"]} href={bar?.link}>
             <img src={bar?.img} alt={"ad"} />

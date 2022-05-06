@@ -25,12 +25,18 @@
 }
 
 /*导航栏第三部分内容*/
+.welcome span {
+  color: #ff2832;
+}
+.welcome a {
+  display: inline-block;
+  margin: 0 8px 0 6px;
+}
 .ul {
   height: 22px;
   padding: 0;
   display: flex;
 }
-
 .ul>li {
   height: 22px;
   background: left -293px no-repeat url(http://img63.ddimg.cn/upload_img/00459/home/head_sprite.png);

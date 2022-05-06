@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import headerTitle from "../../data/headerTitle.json";
 
@@ -25,7 +25,7 @@ export const Header = () => {
                 </div>
                 <div>
                     {localStorage.getItem("tel") ? (
-                        <div>
+                        <div className={styles["welcome"]}>
                             <span>Hi，{localStorage.getItem("tel")}</span>
                             <a onClick={() => localStorage.clear()} href={"/"}>[退出]</a>
                         </div>
