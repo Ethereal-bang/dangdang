@@ -55,7 +55,6 @@ export const GoodsPage = () => {
             }
         })
             .then(res => {
-                console.log(res.data)
                 navigate("/goods/added", {
                     state: {
                         name: res.data.data.name,

@@ -1,5 +1,4 @@
 import styles from "./AddedCartPage.module.css";
-import {menuItem} from "../goods";
 import {Link, useLocation} from "react-router-dom";
 import React from "react";
 import {Header} from "../../components";
