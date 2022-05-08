@@ -27,6 +27,11 @@ interface CartInfo {    // 购物车信息
     allChecked: boolean,   // 全选
 }
 
+interface ShoppingList {
+    _id: string,
+    goods: CartGoods,
+}
+
 const initCartInfo: CartInfo = {
     price: 0,
     num: 0,
@@ -148,6 +153,43 @@ export const ShoppingCartPage = () => {
         })
     }
 
+    function changeGoodsNum(e: React.MouseEvent<HTMLElement>): void {
+        // @ts-ignore
+        // 从父节点dataset获取goodsId
+        const goodsId = e.currentTarget.parentElement.dataset.goodsid as string;
+        const operator = e.currentTarget.dataset.flag as string;
+        setShoppingMapList(shoppingMapList => {
+            if (!shoppingMapList) {
+                return;
+            }
+            const tmp = shoppingMapList?.get(goodsId) as CartGoods;
+            if (operator) {
+                tmp.num += 1;
+            } else {
+                tmp.num -= 1;
+            }
+            shoppingMapList.set(goodsId, tmp);
+          return new Map<string, CartGoods>(Array.from(shoppingMapList)); // state没成功更新？?
+        })
+    }
+
+    function onInputNumChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const value = e.currentTarget.value;
+        // @ts-ignore
+        const goodsId = e.currentTarget.parentElement.dataset.goodsid as string;
+        setShoppingMapList(shoppingMapList => {
+            if (!shoppingMapList) { // 没有这步下面的Array.from报错
+                return ;
+            }
+            shoppingMapList.set(goodsId, {
+                ...shoppingMapList?.get(goodsId) as CartGoods,
+                num: Number(value),
+            })
+            // 下面两步相当于深拷贝了一次，如果return地址与shoppingMapList相同，react认为没有更新
+            return new Map(Array.from(shoppingMapList));
+        })
+    }
+
     return <>
         {/*导航栏*/}
         <header className={styles["header"]}>
@@ -212,7 +254,7 @@ export const ShoppingCartPage = () => {
                     <tbody>
                     {shoppingMapList && Array.from(shoppingMapList).map((item, index) => (
                         /*每个商品占一行*/
-                        <tr key={index}>
+                        <tr key={item.toString()}>
                             <td width={46} align={"center"}>
                                 <i
                                     data-index={index}
@@ -233,14 +275,24 @@ export const ShoppingCartPage = () => {
                             <td width={140}>
                                 {item[1].price_now}
                             </td>
-                            <td width={170} className={styles["col_num"]}>
-                                <button>-</button>
+                            <td
+                                data-goodsid={item[1]._id}
+                                width={170}
+                                className={styles["col_num"]}
+                            >
+                                <button
+                                    onClick={changeGoodsNum}
+                                    data-flag={false}   /*表示-*/
+                                >-</button>
                                 <input
-                                    value={1}
+                                    value={item[1].num}
                                     type={"text"}
-                                    onChange={(e) => (console.log(e))}
+                                    onChange={onInputNumChange}
                                 />
-                                <button>+</button>
+                                <button
+                                    onClick={changeGoodsNum}
+                                    data-flag={true}
+                                >+</button>
                             </td>
                             <td width={80}>
                                 {item[1].price_now}
