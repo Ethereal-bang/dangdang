@@ -158,18 +158,29 @@ export const ShoppingCartPage = () => {
         // 从父节点dataset获取goodsId
         const goodsId = e.currentTarget.parentElement.dataset.goodsid as string;
         const operator = e.currentTarget.dataset.flag as string;
+        // 1.更改列表里对应商品件数
         setShoppingMapList(shoppingMapList => {
             if (!shoppingMapList) {
                 return;
             }
             const tmp = shoppingMapList?.get(goodsId) as CartGoods;
-            if (operator) {
+            // 2.更改购物车总价
+            const {price_now} = shoppingMapList?.get(goodsId) as CartGoods;
+            if (operator === "true") {
                 tmp.num += 1;
-            } else {
+                setCart(cart => { return {
+                    ...cart,
+                    price: cart.price + price_now,
+                }})
+            } else if (tmp.num !== 0) { // 小于0后不能继续-
                 tmp.num -= 1;
+                setCart(cart => { return {
+                    ...cart,
+                    price: cart.price - price_now,
+                }})
             }
             shoppingMapList.set(goodsId, tmp);
-          return new Map<string, CartGoods>(Array.from(shoppingMapList)); // state没成功更新？?
+          return new Map<string, CartGoods>(Array.from(shoppingMapList));
         })
     }
 
@@ -181,10 +192,18 @@ export const ShoppingCartPage = () => {
             if (!shoppingMapList) { // 没有这步下面的Array.from报错
                 return ;
             }
+            // 以前的数目
+            const prevNum = shoppingMapList.get(goodsId)?.num as number;
             shoppingMapList.set(goodsId, {
                 ...shoppingMapList?.get(goodsId) as CartGoods,
                 num: Number(value),
             })
+            // 2.更改购物车总价
+            const {price_now} = shoppingMapList?.get(goodsId) as CartGoods;
+            setCart(cart => { return {
+                ...cart,
+                price: cart.price + price_now * (Number(value) - prevNum),
+            }})
             // 下面两步相当于深拷贝了一次，如果return地址与shoppingMapList相同，react认为没有更新
             return new Map(Array.from(shoppingMapList));
         })
@@ -294,8 +313,8 @@ export const ShoppingCartPage = () => {
                                     data-flag={true}
                                 >+</button>
                             </td>
-                            <td width={80}>
-                                {item[1].price_now}
+                            <td width={80}> {/*单价 * 件数*/}
+                                {item[1].price_now * item[1].num}
                             </td>
                             <td align={"right"}>
                                 <a href={"#!"}>移入收藏</a>
