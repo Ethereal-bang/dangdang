@@ -101,6 +101,8 @@ export const ShoppingCartPage = () => {
         setCart((cart) => {
             let {checkedList, price} = cart;
             // 1.更新价格
+            // 获取数目
+            // shoppingMapList?.get()
             if (checkedList[index]) {   // 本已勾上，即取消选中
                 price -= targetPrice;
             } else {
@@ -277,7 +279,7 @@ export const ShoppingCartPage = () => {
                             <td width={46} align={"center"}>
                                 <i
                                     data-index={index}
-                                    data-price={item[1].price_now}
+                                    data-price={item[1].price_now * item[1].num}
                                     onClick={checkGoods}
                                     className={
                                     cart.checkedList[index]
