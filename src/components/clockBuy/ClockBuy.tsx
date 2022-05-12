@@ -27,13 +27,11 @@ export const ClockBuy = () => {
     useEffect(() => {
         axios.get("http://localhost:3001/goods/getByType/clock")
             .then(res => {
-                console.log(res.data.data.list)
                 setBooks(res.data.data.list);
             })
 
         axios.get("http://localhost:3001/ad/getByPos/clock")
             .then(res => {
-                console.log(res.data.data.list)
                 setAds1(res.data.data.list.slice(4));
                 setAds2(res.data.data.list.slice(4, 8));
             })

@@ -3,6 +3,8 @@
     padding: 0 162px;
 }
 .body a {
+    display: block;
+    margin-top: 20px;
     color: #1a66b3;
 }
 
@@ -113,6 +115,7 @@
 
 .box_left {
     width: 320px;
+    margin-right: 25px;
 }
 .box_left>div>img { /*主图*/
     height: 320px;
@@ -212,12 +215,14 @@
     height: 19px;
     display: inline-block;
     margin: 7px 7px 0 7px;
+    align-items: flex-end;
     background: url(http://product.dangdang.com/images/product_sprites.png) no-repeat -31px -35px;
 }
 .buy div:nth-of-type(2) span {
     vertical-align: top;
 }
 .buy>a {    /*立即购买*/
+    height: 38px;
     padding: 0 13px;
     background: #ffedee;
     border: 1px solid #ff2832;

@@ -40,7 +40,7 @@ export const GoodsPage = () => {
         const goodsID = location.pathname.slice(7);
         axios.get(`http://localhost:3001/goods/getById/${goodsID}`)
             .then(res => {
-                setBook(res.data.data);
+                setBook(res.data.data.goods[0]);
             })
     }, [location])
 
