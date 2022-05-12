@@ -32,7 +32,7 @@ export const ClockBuy = () => {
 
         axios.get("http://localhost:3001/ad/getByPos/clock")
             .then(res => {
-                setAds1(res.data.data.list.slice(4));
+                setAds1(res.data.data.list.slice(0, 4));
                 setAds2(res.data.data.list.slice(4, 8));
             })
     }, [])

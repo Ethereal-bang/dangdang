@@ -58,7 +58,7 @@ export const ShoppingCartPage = () => {
     // 请求购物车
     useEffect(() => {
         // 1.获取当前用户购物车ID
-        const shoppingCartID = localStorage.getItem("shoppingCartId") || "627145752276a450b5ca7a50";
+        const shoppingCartID = localStorage.getItem("shoppingCartId");
         const url = `http://localhost:3001/shoppingCart/${shoppingCartID}/show`;
         // 2.请求购物车
         axios.get(url)
@@ -68,12 +68,16 @@ export const ShoppingCartPage = () => {
                 const shoppingListMap = new Map<string, CartGoods>();
                 data.goodsList.forEach((item: Goods) => {
                     if (shoppingListMap.has(item._id)) {    // 商品已存在该列表，数目加一
-                        const cur = shoppingListMap.get(item._id) as CartGoods;
-                        cur.num++;
-                        shoppingListMap.set(item._id, cur);
+                        const cur = shoppingListMap.get(item._id.toString()) as CartGoods;
+                        shoppingListMap.set(item._id, {
+                            ...cur,
+                            num: ++cur.num,
+                        });
                     } else {    // 不存在与列表，加入
-                        item.num = 1;
-                        shoppingListMap.set(item._id, item);
+                        shoppingListMap.set(item._id.toString(), {
+                            ...item,
+                            num: 1,
+                        });
                     }
                 })
                 setShoppingMapList(shoppingListMap);
@@ -90,7 +94,7 @@ export const ShoppingCartPage = () => {
                         checkedList: tmp,
                     }
                 })
-                // 3.存储状态——总价（便于全选时更新
+                // // 3.存储状态——总价（便于全选时更新
                 setTotalPrice(data.price);
             })
     }, []);
@@ -155,6 +159,7 @@ export const ShoppingCartPage = () => {
         })
     }
 
+    // Bug: price_now
     function changeGoodsNum(e: React.MouseEvent<HTMLElement>): void {
         // @ts-ignore
         // 从父节点dataset获取goodsId
@@ -167,7 +172,7 @@ export const ShoppingCartPage = () => {
             }
             const tmp = shoppingMapList?.get(goodsId) as CartGoods;
             // 2.更改购物车总价
-            const {price_now} = shoppingMapList?.get(goodsId) as CartGoods;
+            const price_now = tmp.price_now;
             if (operator === "true") {
                 tmp.num += 1;
                 setCart(cart => { return {
@@ -182,10 +187,11 @@ export const ShoppingCartPage = () => {
                 }})
             }
             shoppingMapList.set(goodsId, tmp);
-          return new Map<string, CartGoods>(Array.from(shoppingMapList));
+            return new Map<string, CartGoods>(Array.from(shoppingMapList));
         })
     }
 
+    // Bug: price_now
     function onInputNumChange(e: React.ChangeEvent<HTMLInputElement>) {
         const value = e.currentTarget.value;
         // @ts-ignore
