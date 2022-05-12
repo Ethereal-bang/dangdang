@@ -13,7 +13,7 @@ export const LoginPage = () => {
     const [loginState, setLoginState] = useState<"login" | "register">("login");
     const navigate = useNavigate();
 
-    function submitForm(e: any) {
+    function submitForm() {
         if (loginState === "login") {
             axios.get(`http://localhost:3001/users/login`, {
                 params: {
@@ -24,8 +24,13 @@ export const LoginPage = () => {
                 .then(res => {
                     const {data} = res;
                     if (data.flag) {
-                        saveToLocal(data.data);
+                        saveToLocal({
+                            ...data.data.user,
+                            shoppingCartId: data.data.user.tel
+                        });
                         navigate("/")
+                    } else {
+                        alert(data.msg);    // ??
                     }
                 })
         } else {
@@ -37,10 +42,14 @@ export const LoginPage = () => {
             })
                 .then(res => {
                     const {data} = res;
-                    console.log(data)
                     if (data.flag) {
-                        saveToLocal(data.data);
+                        saveToLocal({
+                            ...data.data.user,
+                            shoppingCartId: data.data.user.tel
+                        });
                         navigate("/")
+                    } else {
+                        alert(data.msg);
                     }
                 })
         }
