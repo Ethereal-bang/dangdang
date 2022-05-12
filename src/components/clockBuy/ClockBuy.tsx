@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 const timeOrder = ["00:00场", "08:00场", "12:00场", "16:00场", "20:00场",];
 
 export interface Book {
-    img: [string],
+    img: string,
     name: string,
     price_now: number,
     price_old: number,
@@ -27,11 +27,13 @@ export const ClockBuy = () => {
     useEffect(() => {
         axios.get("http://localhost:3001/goods/getByType/clock")
             .then(res => {
+                console.log(res.data.data.list)
                 setBooks(res.data.data.list);
             })
 
         axios.get("http://localhost:3001/ad/getByPos/clock")
             .then(res => {
+                console.log(res.data.data.list)
                 setAds1(res.data.data.list.slice(4));
                 setAds2(res.data.data.list.slice(4, 8));
             })
@@ -64,7 +66,7 @@ export const ClockBuy = () => {
                 {books?.map((bookInfo, index) => (
                     <div key={index} className={styles["bookBox"]}>
                         <Link to={`./goods/${bookInfo._id}`}>
-                            <img src={bookInfo.img[0]} alt={"book info"} title={bookInfo.name} />
+                            <img src={bookInfo.img} alt={"book info"} title={bookInfo.name} />
                             <div className={styles["line"]}>
                                 <span/>
                                 <div className={styles["process"]}>{bookInfo.process}</div>

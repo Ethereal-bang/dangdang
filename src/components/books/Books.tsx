@@ -89,7 +89,7 @@ export const Books = () => {
                     {books?.[curLeft].map((item, index) => (
                         <li className={styles["book_li"]} key={index}>
                             <Link to={`/goods/${item._id}`} title={item.name}>
-                                <img alt={item.name} src={item.img[0]}/>
+                                <img alt={item.name} src={item.img}/>
                                 <span>{item.name}</span>
                                 <div>
                                     <span>￥{item.price_now}</span>
@@ -112,10 +112,10 @@ export const Books = () => {
                     (index === curRight) ? (
                         <li key={index} className={styles["cur_li"]}>
                             <span>{item.ranking}</span>
-                            <a href={item.img[0]}>
-                                <img src={item.img[0]} alt={item.name} />
+                            <a href={item.img}>
+                                <img src={item.img} alt={item.name} />
                             </a>
-                            <a href={item.img[0]} title={item.name}>
+                            <a href={item.img} title={item.name}>
                                 {item.name}
 
                             </a>

@@ -12,7 +12,7 @@ interface BookInfo {
     comments: number,
     description: string,
     genre?: string,
-    img: string[],
+    img: string,
     name: string,
     price_now: number,
     price_old: number,
@@ -133,14 +133,12 @@ export const GoodsPage = () => {
                 {/*图片*/}
                 <section className={styles["box_left"]}>
                     <div>
-                        <img src={book?.img[0]} alt={"book cover"} />
+                        <img src={book?.img} alt={"book cover"} />
                     </div>
                     <ul>
-                        {book?.img.map((img, index) => (
-                            <li key={index}>
-                                <img src={img} alt={"cover"} key={index} />
-                            </li>
-                        ))}
+                        <li>
+                            <img src={book?.img} alt={"cover"} />
+                        </li>
                     </ul>
                 </section>
                 {/*信息*/}
