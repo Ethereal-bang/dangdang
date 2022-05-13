@@ -26,7 +26,7 @@ export const LoginPage = () => {
                     if (data.flag) {
                         saveToLocal({
                             ...data.data.user,
-                            shoppingCartId: data.data.user.tel
+                            shoppingCartId: data.data.user.shoppingCartId,
                         });
                         navigate("/")
                     } else {
@@ -45,7 +45,7 @@ export const LoginPage = () => {
                     if (data.flag) {
                         saveToLocal({
                             ...data.data.user,
-                            shoppingCartId: data.data.user.tel
+                            shoppingCartId: data.data.user.shoppingCartId,
                         });
                         navigate("/")
                     } else {

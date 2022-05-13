@@ -159,7 +159,6 @@ export const ShoppingCartPage = () => {
         })
     }
 
-    // Bug: price_now
     function changeGoodsNum(e: React.MouseEvent<HTMLElement>): void {
         // @ts-ignore
         // 从父节点dataset获取goodsId
@@ -186,12 +185,17 @@ export const ShoppingCartPage = () => {
                     price: cart.price - price_now,
                 }})
             }
+            if (tmp.num === 0 && cart.num !== 0) {
+                setCart(cart => { return {
+                    ...cart,
+                    num: cart.num - 1,
+                }})
+            }
             shoppingMapList.set(goodsId, tmp);
             return new Map<string, CartGoods>(Array.from(shoppingMapList));
         })
     }
 
-    // Bug: price_now
     function onInputNumChange(e: React.ChangeEvent<HTMLInputElement>) {
         const value = e.currentTarget.value;
         // @ts-ignore

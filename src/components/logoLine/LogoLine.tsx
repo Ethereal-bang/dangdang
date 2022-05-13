@@ -20,7 +20,7 @@ export const LogoLine = () => {
             }
         })
             .then(res => {
-                setSearchRes(res.data.data.list);
+                setSearchRes(res.data.data?.list);
             })
     }, [searchVal]);
 

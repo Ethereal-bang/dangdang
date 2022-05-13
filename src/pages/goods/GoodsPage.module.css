@@ -175,6 +175,7 @@
     height: 36px;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     margin: 35px 0;
     font: 16px/36px "Microsoft Yahei";
 }
@@ -215,7 +216,6 @@
     height: 19px;
     display: inline-block;
     margin: 7px 7px 0 7px;
-    align-items: flex-end;
     background: url(http://product.dangdang.com/images/product_sprites.png) no-repeat -31px -35px;
 }
 .buy div:nth-of-type(2) span {

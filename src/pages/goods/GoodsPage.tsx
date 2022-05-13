@@ -1,4 +1,4 @@
-import {Ad, Header} from "../../components";
+import {Ad, Header, LogoLine} from "../../components";
 import styles from "./GoodsPage.module.css";
 import menuData from "../../data/menu.json";
 import {useEffect, useState} from "react";
@@ -40,7 +40,7 @@ export const GoodsPage = () => {
         const goodsID = location.pathname.slice(7);
         axios.get(`http://localhost:3001/goods/getById/${goodsID}`)
             .then(res => {
-                setBook(res.data.data.goods[0]);
+                setBook(res.data.data.goods);
             })
     }, [location])
 
@@ -68,6 +68,7 @@ export const GoodsPage = () => {
         <Header />
 
         <section className={styles["body"]}>
+            <LogoLine />
             {/*头部导航栏*/}
             <ul className={styles["menu_header"]}>
                 <li className={styles["menu_item"] + " " + styles["genre_menu"]}>
